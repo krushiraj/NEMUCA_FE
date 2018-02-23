@@ -1,6 +1,7 @@
 var svg = document.getElementById('menu'),
     itemContainer = document.getElementById('itemsContainer'),
     items = svg.querySelectorAll('.item'),
+    itemsectors = document.querySelectorAll('.sector'),
     trigger = document.getElementById('trigger'),
     label = trigger.querySelectorAll('#label')[0],
     open = true,
@@ -8,7 +9,37 @@ var svg = document.getElementById('menu'),
     outer = document.getElementById("outer"),
     inner = document.getElementById("inner"),
     defMatrix = itemContainer.getAttribute("transform"),
-    anim = document.getElementById('ani-svg');
+    anim = document.getElementById('ani-svg'),
+    svgbox = document.getElementById("svgbox"),
+    butl = document.getElementById("rotButtonl"),
+    butr = document.getElementById("rotButtonr");
+
+var lastLabel;
+
+for(var i=0;i<8;i++)
+{
+    items[i].addEventListener("mouseover", changeText, false);
+    items[i].addEventListener("mouseout", function(e){
+        label.innerHTML = lastLabel;
+    }, false);
+}
+
+function changeText(e){
+    var itemid = this.id;
+    lastLabel = label.innerHTML;
+    switch(itemid[5])
+    {
+        case '1':label.innerHTML = "Home";break; 
+        case '2':label.innerHTML = "Sponsors";break; 
+        case '3':label.innerHTML = "Login";break; 
+        case '4':label.innerHTML = "Events";break; 
+        case '5':label.innerHTML = "Map";break; 
+        case '6':label.innerHTML = "Team";break; 
+        case '7':label.innerHTML = "Social";break; 
+        case '8':label.innerHTML = "Gallery";break; 
+    }
+}
+
 
 function getMyChildren(node)
 {
@@ -58,6 +89,16 @@ setPositions(items);
 //set up event handler
 trigger.addEventListener('click', toggleMenu, false);
 // svg.style.pointerEvents = "none";
+
+butl.addEventListener('click', function(e) {
+    e.stopPropagation();
+    rotateSVG(-45);
+}, false);
+butr.addEventListener('click', function(e) {
+    e.stopPropagation();
+    rotateSVG(45);
+}, false);
+
 svg.addEventListener("pointerdown", pointDown, false);
 svg.addEventListener("touchstart", touchDown, false);
 //svg.addEventListener("mousedown", pointDown, false);
@@ -87,29 +128,43 @@ svg.addEventListener("mouseup", pointUp, false);
 function setNavText()
 {
     var currAngle = (parseInt((anim.getAttribute("to")))%360)/45;
+    currAngle = currAngle > 1 ? currAngle : currAngle*-1;
     switch(currAngle)
     {
         case 0: label.innerHTML = "Home"; break;
         case 1: label.innerHTML = "Sponsors"; break;
         case 2: label.innerHTML = "Login"; break;
         case 3: label.innerHTML = "Events"; break;
-        case 4: label.innerHTML = "TBD"; break;
-        case 5: label.innerHTML = "TBD"; break;
-        case 6: label.innerHTML = "TBD"; break;
-        case 7: label.innerHTML = "TBD"; break;
+        case 4: label.innerHTML = "Map"; break;
+        case 5: label.innerHTML = "Team"; break;
+        case 6: label.innerHTML = "Social"; break;
+        case 7: label.innerHTML = "Gallery"; break;
     }
+}
+
+function diff(a,b)
+{
+    if(a>b)
+        return a-b;
+    else
+        return b-a;
 }
 
 function pointUp(e) {
     if(open) { 
         x2 = e.screenX;
         y2 = e.screenY;
-        var diffy = (y2-y1);
-        var diffx = (x2-x1);
-        if(diffx > 0 || diffy > 0) 
+        var diffy = diff(y1,y2);
+        var diffx = diff(x1,x2);
+        var dir = diffx>diffy ? (x1<x2 ? 0 : 1) : (y1<y2 ? 1 : 0);
+        if(dir) 
         {
              rotateSVG(45);
             //setNavText();
+        }
+        else
+        {
+            rotateSVG(-45);
         }
     }
 }
@@ -118,12 +173,17 @@ function touchUp(e) {
     if(open) { 
         x2 = e.changedTouches[0].screenX;
         y2 = e.changedTouches[0].screenY;
-        var diffy = (y2-y1);
-        var diffx = (x2-x1);
-        if(diffx > 0 || diffy > 0) 
+        var diffy = diff(y1,y2);
+        var diffx = diff(x1,x2);
+        var dir = diffx>diffy ? (x1<x2 ? 0 : 1) : (y1<y2 ? 1 : 0);
+        if(dir) 
         {
              rotateSVG(45);
             //setNavText();
+        }
+        else
+        {
+            rotateSVG(-45);
         }
     }
 }
@@ -227,3 +287,4 @@ function resetRotation()
     anim.beginElement();
     label.setAttribute("transform","rotate(0,250,250)");
 }
+

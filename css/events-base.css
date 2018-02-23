@@ -214,6 +214,8 @@ table {
 html {
     background: #000;
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -247,6 +249,46 @@ body {
     background-color: var(--color-bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    padding: 0;
+    margin: 0;
+}
+
+#head {
+                margin: 0;
+                background-color: white;
+                text-align: center;
+                font-size: 2em;
+                padding: 1em;
+            }
+
+button:focus {
+    outline: none !important;
+}
+
+.dummy-menu {
+    border: 0;
+    background: none;
+    padding: 0;
+    margin: 1.5em 1.2em 0 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    font-size: 0.85em;
+    color: var(--color-close);
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.icon {
+    display: block;
+    width: 2em;
+    height: 2em;
+    margin: 0 auto;
+    fill: black;
+}
+
+.icon:hover {
+    fill: gray;
 }
 
 a {
@@ -258,10 +300,6 @@ a {
 a:hover,
 a:focus {
     color: var(--color-link-hover);
-    outline: none;
-}
-
-button:focus {
     outline: none;
 }
 
@@ -302,18 +340,6 @@ button:focus {
 }
 
 /* Icons */
-
-.icon {
-    display: block;
-    width: 4em;
-    height: 4em;
-    margin: 0 auto;
-    fill: currentColor;
-}
-
-.icon:hover {
-    fill: gray;
-}
 
 main {
     position: relative;
@@ -577,20 +603,6 @@ main {
     cursor: pointer;
     font-size: 0.85em;
     color: var(--color-close);
-}
-
-.dummy-menu {
-    border: 0;
-    background: none;
-    padding: 0;
-    margin: 2.75em 2.5em 0 0;
-    position: fixed;
-    top: 0;
-    right: 0;
-    font-size: 0.85em;
-    color: var(--color-close);
-    cursor: pointer;
-    z-index: 1000;
 }
 
 .details__magnifier {

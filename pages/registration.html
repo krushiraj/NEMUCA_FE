@@ -43,11 +43,12 @@
 		<div class="container">
 			<header class="codrops-header">
 				<h1>Register here for the events of Acumen IT</h1>
-                <button class="dummy-menu" onclick="window.location.href='../index.html'"><svg class="icon icon--menu"><use xlink:href="#icon-menu"></use></svg>
+                <button class="dummy-menu" onclick="window.location.href='../index.php'"><svg class="icon icon--menu"><use xlink:href="#icon-menu"></use></svg>
                 </button>
 			</header>
             
-            <section class="content bgcolor-4">
+            <section class="content bgcolor-4" disabled>
+                <h3><strong>Registrations will be open soon!</strong></h3>
                 <h2>Just need some details to continue.</h2>
                 <span class="input input--akira">
 					<input class="input__field input__field--akira" type="text" id="input-22" />
@@ -95,6 +96,14 @@
 						<li><input id="e2" name="event" type="checkbox" value="2"><label for="e2">Event 2</label></li>
                         <li><input id="e3" name="event" type="checkbox" value="3"><label for="e3">Event 3</label></li>
 						<li><input id="e4" name="event" type="checkbox" value="4"><label for="e4">Event 4</label></li>
+                        <li><input id="e1a" name="event" type="checkbox" value="1a"><label for="e1a">Event 1</label></li>
+						<li><input id="e2a" name="event" type="checkbox" value="2a"><label for="e2a">Event 2</label></li>
+                        <li><input id="e3a" name="event" type="checkbox" value="3a"><label for="e3a">Event 3</label></li>
+						<li><input id="e4a" name="event" type="checkbox" value="4a"><label for="e4a">Event 4</label></li>
+                        <li><input id="e1b" name="event" type="checkbox" value="1b"><label for="e1b">Event 1</label></li>
+						<li><input id="e2b" name="event" type="checkbox" value="2b"><label for="e2b">Event 2</label></li>
+                        <li><input id="e3b" name="event" type="checkbox" value="3b"><label for="e3b">Event 3</label></li>
+						<li><input id="e4b" name="event" type="checkbox" value="4b"><label for="e4b">Event 4</label></li>
 					</ul>
 				</form>
                 <div class="box bg-3">
@@ -139,6 +148,12 @@
 					}
 				}
 			})();
+            var inputs = document.getElementsByTagName('input');
+            for(var i = 0; i<inputs.length;i++)
+            {
+                inputs[i].disabled = true;
+            }
+            alert("Registrations will be opened soon! Please stay tuned.");
 		</script>
 	</body>
 </html>
