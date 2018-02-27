@@ -12,9 +12,36 @@ var svg = document.getElementById('menu'),
     anim = document.getElementById('ani-svg'),
     svgbox = document.getElementById("svgbox"),
     butl = document.getElementById("rotButtonl"),
-    butr = document.getElementById("rotButtonr");
-
-var lastLabel;
+    butr = document.getElementById("rotButtonr"),
+    scrollLogo = document.getElementById("sd-indicator0"),
+    scrollNav = document.getElementsByClassName("sd-indicator1"),
+    scrollToNav = document.getElementsByClassName("sd-indicator2"),
+    body = document.body;
+var lastLabel,
+    logoScrolled = false,
+    navScrolled = false,
+    restrictScroll = true;
+    
+if((window.location.hash!="#nav")||(window.location.hash==="")) {
+    closeNav();
+}
+  
+function jumpEffect(e) {
+    if(!logoScrolled){
+        $('html, body').animate({
+            scrollTop: window.innerHeight*0.1
+        }, 150);
+        $('html, body').animate({
+            scrollTop: 0
+        }, 100);
+        $('html, body').animate({
+            scrollTop: window.innerHeight*0.05
+        }, 80);
+        $('html, body').animate({
+            scrollTop: 0
+        }, 80);
+    }
+}
 
 for(var i=0;i<8;i++)
 {
@@ -31,7 +58,7 @@ function changeText(e){
     {
         case '1':label.innerHTML = "Home";break; 
         case '2':label.innerHTML = "Sponsors";break; 
-        case '3':label.innerHTML = "Login";break; 
+        case '3':label.innerHTML = "Registration";break; 
         case '4':label.innerHTML = "Events";break; 
         case '5':label.innerHTML = "Map";break; 
         case '6':label.innerHTML = "Team";break; 
@@ -76,7 +103,7 @@ function setPositions(items)
         cir.cy.baseVal.value = Math.ceil(cen.y + (cen.height/2));
         cir.style.opacity = "1";
         var innerhtml = items[i].innerHTML;
-        items[i].innerHTML = '<line x1="'+cir.cx.baseVal.value+'" y1="'+cir.cy.baseVal.value+'" x2="250" y2="250" style="stroke:rgb(255,0,0);stroke-width:2;pointer-events:none"/>'.concat(innerhtml);
+        items[i].innerHTML = '<line x1="'+cir.cx.baseVal.value+'" y1="'+cir.cy.baseVal.value+'" x2="250" y2="250" style="stroke:cyan;stroke-width:2;pointer-events:none"/>'.concat(innerhtml);
     }
 }
 
@@ -128,12 +155,12 @@ svg.addEventListener("mouseup", pointUp, false);
 function setNavText()
 {
     var currAngle = (parseInt((anim.getAttribute("to")))%360)/45;
-    currAngle = currAngle > 1 ? currAngle : currAngle*-1;
+    currAngle = currAngle >= 0 ? currAngle : 8+currAngle;
     switch(currAngle)
     {
         case 0: label.innerHTML = "Home"; break;
         case 1: label.innerHTML = "Sponsors"; break;
-        case 2: label.innerHTML = "Login"; break;
+        case 2: label.innerHTML = "Registration"; break;
         case 3: label.innerHTML = "Events"; break;
         case 4: label.innerHTML = "Map"; break;
         case 5: label.innerHTML = "Team"; break;
@@ -156,6 +183,10 @@ function pointUp(e) {
         y2 = e.screenY;
         var diffy = diff(y1,y2);
         var diffx = diff(x1,x2);
+        if(diffx <= 50 && diffy <= 50)
+        {
+            return;
+        }
         var dir = diffx>diffy ? (x1<x2 ? 0 : 1) : (y1<y2 ? 1 : 0);
         if(dir) 
         {
@@ -168,13 +199,19 @@ function pointUp(e) {
         }
     }
 }
-
+var svgboxcen = svgbox.getBoundingClientRect();
+var svgxcen = (svgboxcen.x + svgboxcen.width/2);
+var svgycen = (svgboxcen.y + svgboxcen.height/2);
 function touchUp(e) {
     if(open) { 
         x2 = e.changedTouches[0].screenX;
         y2 = e.changedTouches[0].screenY;
         var diffy = diff(y1,y2);
         var diffx = diff(x1,x2);
+        if(diffx <= 50 && diffy <= 50)
+        {
+            return;
+        }
         var dir = diffx>diffy ? (x1<x2 ? 0 : 1) : (y1<y2 ? 1 : 0);
         if(dir) 
         {
@@ -206,15 +243,30 @@ function closeNav()
     rotateSVG(0);
 }
 
-closeNav();
+
+function openNav() {
+    var tl = new TimelineLite();
+  	tl.to(items, 0.2, {scale:1, ease:Back.easeOut.config(4)}, 0.05);
+    
+    for(var i=0; i<items.length; i++){
+      tl.to(items[i], 0.7, {rotation:-i*angle + "deg", ease:Bounce.easeOut}, 0.35);
+    }
+    outer.r.baseVal.value += 30;
+    inner.r.baseVal.value += 30;
+    label.style.fontSize = "1.5em"
+    label.innerHTML = "Home";
+    svg.style.pointerEvents = "auto";
+}
+
 //toggle menu when trigger is clicked
 function toggleMenu(event) {
-   if (!event) var event = window.event;
+   if (!event){ var event = window.event;
     event.stopPropagation();
+    }
   open = !open;
   if (open) {
     var tl = new TimelineLite();
-  	tl.to(items, 0.2, {scale:1, ease:Back.easeOut.config(4)}, 0.05);
+  	tl.to(items, 0.2, {scale:1, ease:Back.easeOut.config(1)}, 0.05);
     
     for(var i=0; i<items.length; i++){
       tl.to(items[i], 0.7, {rotation:-i*angle + "deg", ease:Bounce.easeOut}, 0.35);
@@ -227,18 +279,18 @@ function toggleMenu(event) {
     
   } 
   else {
-    var tl = new TimelineLite();
-    for(var i=0; i<items.length; i++){
-      tl.to(items[i], 0.3, {rotation: 0, ease:Circ.easeOut}, 0.05);
-    }
-    
-    tl.to(items, .3, {scale:0, ease:Back.easeIn}, 0.3);
-    label.innerHTML = "Home";
-    svg.style.pointerEvents = "none";
-    outer.r.baseVal.value -= 30;
-    inner.r.baseVal.value -= 30;
-    label.style.fontSize = "1em"
-    resetRotation();
+        setNavText();
+        switch(label.innerHTML)
+        {
+            case 'Home': closeNav(); return; 
+            case 'Sponsors': window.location.href = 'pages/sponsors.html';return;
+            case 'Registration': window.location.href = 'pages/registration.html';return;
+            case 'Events': window.location.href = 'pages/events.html';return;
+            case 'Map': window.location.href = 'pages/map.html';return;
+            case 'Team': window.location.href = 'pages/team.html';return;
+            case 'Social': window.location.href = 'pages/social.html';return;
+            case 'Gallery': window.location.href = 'pages/gallery.html';return;
+        }
   }
   
 }
@@ -250,18 +302,18 @@ svg.onclick = function (e) {
 document.onclick = function () {
     if(open)
     {
-    open = false;
-    var tl = new TimelineLite();
-    for(var i=0; i<items.length; i++){
-      tl.to(items[i], 0.3, {rotation: 0, ease:Circ.easeOut}, 0.05);
-    }
-    tl.to(items, .3, {scale:0, ease:Back.easeIn}, 0.3);
-    label.innerHTML = "Home";
-    svg.style.pointerEvents = "none";
-    outer.r.baseVal.value -= 30;
-    inner.r.baseVal.value -= 30;
-    label.style.fontSize = "1em";
-    resetRotation();
+        open = false;
+        var tl = new TimelineLite();
+        for(var i=0; i<items.length; i++){
+          tl.to(items[i], 0.3, {rotation: 0, ease:Circ.easeOut}, 0.05);
+        }
+        tl.to(items, .3, {scale:0, ease:Back.easeIn}, 0.3);
+        label.innerHTML = "Home";
+        svg.style.pointerEvents = "none";
+        outer.r.baseVal.value -= 30;
+        inner.r.baseVal.value -= 30;
+        label.style.fontSize = "1em";
+        resetRotation();
     }
 };
 
@@ -287,4 +339,3 @@ function resetRotation()
     anim.beginElement();
     label.setAttribute("transform","rotate(0,250,250)");
 }
-

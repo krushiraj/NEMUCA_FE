@@ -28,7 +28,7 @@ button:focus {
     width: 2em;
     height: 2em;
     margin: 0 auto;
-    fill: black;
+    fill: #bcbcbc;
 }
 
 .icon:hover {
@@ -57,7 +57,7 @@ button:focus {
 .sponsor {
     padding: 1em;
     border: 2px solid gray;
-    margin: 2em 30vw;
+    margin: 2em 10vw;
     border-radius: 10px;
 }
 

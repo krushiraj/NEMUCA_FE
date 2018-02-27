@@ -339,7 +339,7 @@
     imagesLoaded(document.body, () => document.body.classList.remove('loading'));
     
     var heightLeast = document.querySelector('.details__bg--up').clientHeight + 
-        document.querySelector('.details__bg--down').clientHeight;
+        document.querySelector('.details__bg--down').clientHeight + (window.innerHeight*0.1);
     //to restrict extra scrolling
     window.onscroll = function()
     {

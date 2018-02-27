@@ -47,34 +47,38 @@
                 width: 2em;
                 height: 2em;
                 margin: 0 auto;
-                fill: black;
+                fill: #bcbcbc;
             }
-
+            .block {
+                margin: 0.5em;
+                padding: 0.5em;
+            }
             .icon:hover {
                 fill: gray;
-            }
-            
-            p,h2 {
-                color: white;
             }
             
             #container>h2 {
                 font-size: 250%;
             }
             
+            #details {
+                color: white;
+            }
+            
             #container {
                 text-align: center;
             }
             .section {
-                padding: 1em;
+                padding: 0;
                 display: grid;
-                grid-template: auto/ auto auto auto;
+                grid-template-columns:auto auto auto;
+                grid-template-rows:auto auto auto;
                 grid-auto-columns: 25vw;
                 grid-auto-rows: 40vh;
                 grid-gap: 10px;
             }
             #member {
-                
+                height: auto;
             }
             
             #member:hover p, #member:hover h2, #member:hover ,#member:active p, #member:active h2, #member:hover img, #member:active{
@@ -130,9 +134,10 @@
             
             <div id="head">
                 <h1>ACUMEN IT TEAM</h1>
-                <button class="dummy-menu" onclick="window.location.href='../index.php'"><svg class="icon icon--menu"><use xlink:href="#icon-menu"></use></svg></button>
+                <button class="dummy-menu" onclick="window.location.href='../index.php#nav'"><svg class="icon icon--menu"><use xlink:href="#icon-menu"></use></svg></button>
             </div>
-            <h2>Organizers</h2>
+            <div class="block">
+            <h1 style="color: white">Organizers</h1>
             <div class="section">
                 <div id="member">
                     <div id="mem-img">
@@ -149,7 +154,7 @@
                         <img src="../img/team/prabhas.png" style="">
                     </div>
                     <div id="details">
-                        <h2>Thrinath Ikkurthi</h2>
+                        <h2>Krupa Pulgam</h2>
                         <p>Designation</p>
                         <p>Contact</p>
                     </div>
@@ -159,11 +164,192 @@
                         <img src="../img/team/prabhas.png" style="">
                     </div>
                     <div id="details">
-                        <h2>Thrinath Ikkurthi</h2>
+                        <h2>Vineela Reddy</h2>
                         <p>Designation</p>
                         <p>Contact</p>
                     </div>
                 </div>
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Pavani</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="block">
+            <h1 style="color: white">Design Team</h1>
+            <div class="section">
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Susheel Reddy</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Sagar Janagamwar</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Shiva Kumar</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Chetan Ambati</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Sai Abhishek</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="block">
+            <h1 style="color: white">Technical Team</h1>
+            <div class="section">
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Krushi Raj Tula</h2>
+                        <p>Web Designer</p>
+                        <p>Contact: 8143827431</p>
+                    </div>
+                </div>
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Mahendra Pamidi</h2>
+                        <p>Web Designer</p>
+                        <p>Contact: 9700183746</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="block">
+            <h1 style="color: white">Arts Team</h1>
+            <div class="section">
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Suraj Kumar</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Arvind</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Sada Sheri</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Niharika</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="block">
+            <h1 style="color: white">Events Team</h1>
+            <div class="section">
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Anusha</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Nikhilesh</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Mani Sai</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+                <div id="member">
+                    <div id="mem-img">
+                        <img src="../img/team/prabhas.png" style="">
+                    </div>
+                    <div id="details">
+                        <h2>Niharika</h2>
+                        <p>Designation</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
     </body>
